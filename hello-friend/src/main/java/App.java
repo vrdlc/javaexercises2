@@ -23,5 +23,23 @@ public class App {
       model.put("template", "templates/favorite_photos.vtl");
         return new ModelAndView(model, "templates/layout.vtl");
     }, new VelocityTemplateEngine());
+
+    get("/form", (request, response) -> {
+      HashMap model = new HashMap();
+      model.put("template", "templates/form.vtl");
+        return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("/greeting_card", (request, response) -> {
+      HashMap model = new HashMap();
+      String recipient = request.queryParams("recipient");
+      String sender = request.queryParams("sender");
+
+      model.put("recipient", recipient);
+      model.put("sender", sender);
+      model.put("template", "templates/greeting_card.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
   }
 }
